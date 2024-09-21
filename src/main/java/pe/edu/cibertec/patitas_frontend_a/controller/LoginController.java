@@ -30,13 +30,13 @@ public class LoginController {
                 numeroDocumento == null || numeroDocumento.trim().length() == 0 ||
                 password == null || password.trim().length() == 0) {
 
-            //Invocar servicio
-
             LoginModel loginModel = new LoginModel("01", "Error: Debe completar correctamente sus credenciales", "");
             model.addAttribute("loginModel", loginModel);
             return "inicio";
 
         }
+
+        // Invocar servicio de autenticación
 
         LoginModel loginModel = new LoginModel("00", "", "César Santos");
         model.addAttribute("loginModel", loginModel);
