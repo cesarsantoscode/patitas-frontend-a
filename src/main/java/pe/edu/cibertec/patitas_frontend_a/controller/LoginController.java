@@ -17,7 +17,7 @@ import pe.edu.cibertec.patitas_frontend_a.viewmodel.LoginModel;
 public class LoginController {
 
     @Autowired
-    RestTemplate restTemplate;
+    RestTemplate restTemplateAutenticacion;
 
     @GetMapping("/inicio")
     public String inicio(Model model) {
@@ -46,9 +46,8 @@ public class LoginController {
         try {
 
             // Invocar servicio de autenticación
-            String endpoint = "http://localhost:8081/autenticacion/login";
             LoginRequestDTO loginRequestDTO = new LoginRequestDTO(tipoDocumento, numeroDocumento, password);
-            LoginResponseDTO loginResponseDTO = restTemplate.postForObject(endpoint, loginRequestDTO, LoginResponseDTO.class);
+            LoginResponseDTO loginResponseDTO = restTemplateAutenticacion.postForObject("/login", loginRequestDTO, LoginResponseDTO.class);
 
             if (loginResponseDTO.codigo().equals("00")){
 
